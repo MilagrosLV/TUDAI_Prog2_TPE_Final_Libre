@@ -21,21 +21,30 @@ public class CargadorTablero {
 		
 		
 		try(Scanner sc = new Scanner(archivo);){
-			if (!sc.hasNextInt()) {
+			if (!sc.hasNextInt()) {//Busco si hay int para filas
 				throw new Exception("Formato inválido: falta número de filas");
 			}
-			int filas = sc.nextInt();
+			int filas = sc.nextInt();//tomo el int 
+			if (filas <= 0) {//chequeo si ese int es igual o menor a 0(si o si tiene que haber filas y columnas declaradas)
+				throw new Exception("Formato inválido: número de filas inválido");
+			}
+
+			//Ejerso el mismo chequeo y declaración que con filas
 			if (!sc.hasNextInt()) {
 			    throw new Exception("Formato inválido: falta número de columnas");
 			}
 	        int columnas = sc.nextInt();
-	        sc.nextLine(); // Limpiar el buffer
+			if (columnas <= 0) {
+				throw new Exception("Formato inválido: número de columnas inválido");
+			}
+
+	        sc.nextLine(); //Limpiar el buffer
 	
 	        Tablero tablero = new Tablero(filas, columnas);
 	
 	        for (int i = 0; i < filas; i++) {
-	            if (!sc.hasNextLine()) break;
-	            String linea = sc.nextLine();
+	            String linea = "";
+				if (sc.hasNextLine()) linea = sc.nextLine();
 	            for (int j = 0; j < columnas; j++) {
 	                char c;
 					if (j < linea.length()) c=linea.charAt(j);
