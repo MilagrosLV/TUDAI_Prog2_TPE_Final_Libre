@@ -13,7 +13,6 @@ Este proyecto se crea a partir de la consigna del TPE Libre - Juego de la vida (
 ---
 
 ## Estructura del Proyecto
-
 ```
 JuegoDeLaVida/
 ├── src/
@@ -44,33 +43,25 @@ JuegoDeLaVida/
 ---
 
 ## Compilación
-
 ### Desde Línea de Comandos
-
 ```bash
 cd JuegoDeLaVida
 javac -d bin src/modelo/*.java src/juego/*.java src/vista/*.java src/io/*.java
 ```
 
 ## Ejecución
-
 ### Desde Línea de Comandos
-
 1. Una vez ya posicionado dentro de la carpeta JuegoDeLaVida
-
 ```bash
 java -cp bin juego.JuegoDeLaVida
 ```
 
 ### Desde IDE
-
 1. Abre el archivo `JuegoDeLaVida.java`
 2. Ejecuta el método `main()` (botón de play o tecla F5)
 
 ### Interfaz
-
 Se usa una interfaz Swing. Los controles/botones disponibles son:
-
 - **Cargar desde archivo**: abre un `JFileChooser` para elegir un tablero desde `ejemplos/` o cualquier archivo `.txt`.
 - **Generar tablero aleatorio**: crea un tablero con tamaños definidos por los campos `Filas` y `Columnas`.
   - Para generar un archivo aleatorio, se debe tomar en cuenta los valores presentes en los campos Filas, Columnas, Generaciones y Delay(ms). Cada uno de estos campos vienen con valores de default. Si se presiona el botón Generar tablero aleatorio sin modificar niguno, entonces se generará un tablero de 10 filas x 10 columnas, donde cada celda puede tomar cualquiera de los valores habilitados con un 25% de probabilidad y correrá hasta que el tablero se estabilice sin importar cuantos ciclos generacionales deberá pasar (Generaciones dice 0, eso significa que no se ingresa cuantas generaciones se recorrerán), a una velocidad de 500 milisegundos.
@@ -79,13 +70,9 @@ Se usa una interfaz Swing. Los controles/botones disponibles son:
     - **Pausar / Reanudar**: controla la ejecución automática. Cambia el nombre del botón, si se Pausa cambia a Reanudar y vice versa. 
     - **Siguiente**: avanza una única generación manualmente.
 
-
-
-### Formato de Archivo Soportado
-
+### Formato de Archivo
 El archivo debe tener el siguiente formato:
 - Debe ser de tipo .txt
-
 ```
 <filas> <columnas>
 O.X.O
@@ -104,9 +91,7 @@ Caracteres válidos:
 - **Nota:** El programa es insensible a mayúsculas/minúsculas al leer archivos, y cualquier carácter no reconocido será tratado automáticamente como una celda muerta `.`. También, debe tomarse en cuenta que al crear un archivo, la posición de dónde se declaran las filas y las columnas es absoluta (siempre el primer renglón, el primer caracter debe ser valido Integer y luego debe estar separado por un espacio para el siguiente valor Integer, pues uso Scanner.hasNeztInt()).
 
 ### Controles Durante la Simulación
-
 Los campos de configuración visibles en la interfaz son:
-
 - `Filas`
 - `Columnas`
 - `Generaciones`
@@ -119,11 +104,8 @@ Comportamiento actual:
 ---
 
 ## Arquitectura y Diseño
-
 ### Separación Modelo-Vista
-
 El proyecto implementa una arquitectura limpia que separa la lógica del juego de su presentación gráfica:
-
 ```
 ┌─────────────────────────────────────────────────┐
 │               VISTA                            │
@@ -152,45 +134,39 @@ El proyecto implementa una arquitectura limpia que separa la lógica del juego d
 ```
 
 ### Clases Principales y Responsabilidades
-
 #### 1. **Tablero.java** - Orquestación del Juego
 - **Responsabilidad**: Gestionar el estado global del tablero y la evolución de generaciones.
-- **Métodos clave**:
+- **Métodos**:
   - `avanzarGeneracion()`: Calcula la siguiente generación y devuelve si hubo cambios.
   - `contarVecinosVivos(int fila, int col)`: Cuenta celdas vivas adyacentes.
   - `mostrar()`: Imprime el tablero en consola.
-  - `setCelda()` / `getCelda()`: Acceso a celdas específicas.
+  - `setCelda()` / `getCelda()`: Acceso y modificación a celdas específicas.
 
-**Lógica de evolución**:
+**Lógica de evolución para la siguiente generación**:
 ```java
 // Para cada celda:
 // 1. Contar vecinos vivos
 // 2. Calcular siguiente estado (delegado a Estado)
-// 3. Guardar el estado previsto
+// 3. Guardar el estado previsto en una matriz
 // 4. Actualizar el estado al final de la iteración
-// 5. Reportar si hubo cambios
+// 5. Reportar si hubo cambios al comparar ambas matrices
 ```
 
 #### 2. **Celda.java** - Unidad Atómica
-- **Responsabilidad**: Representar una celda individual y su evolución.
-- **Métodos clave**:
+- **Responsabilidad**: Representar una celda y su evolución.
+- **Métodos**:
   - `calcularSig(int vecinosVivos)`: Delega a `Estado` para calcular el siguiente estado.
   - `evolucionar()`: Transiciona al siguiente estado.
   - `isViva()`: Consulta si la celda está viva.
 
-**Patrón**: Actúa como contexto en el patrón State.
-
-#### 3. **Estado.java (Interfaz)** - Patrón Strategy
-- **Responsabilidad**: Definir el contrato para comportamientos de estado.
+#### 3. **Estado.java** - Interfaz
+- **Responsabilidad**: Definir de manera abstracta los comportamientos de estado. Luego, cada clase que lo implemente definirá su comportamiento.
 - **Métodos**:
   - `boolean isViva()`: ¿Es una celda viva?
   - `char getRepresentacion()`: Símbolo visual
   - `Estado SigEstado(int vecinosVivos)`: Calcula transición
 
-**Ventaja**: Nueva lógica sin modificar `Celda` o `Tablero`.
-
 #### 4. **Implementaciones de Estado**
-
 **EstadoVivo.java**
 - Muere si tiene < 2 o > 3 vecinos vivos.
 - Con 2 o 3 vecinos vive y puede enfermarse con probabilidad 25%.
@@ -213,13 +189,12 @@ El proyecto implementa una arquitectura limpia que separa la lógica del juego d
 
 #### 5. **VistaJuego.java** - Interfaz de Usuario
 - **Responsabilidad**: Orquestar la interacción gráfica con Swing.
-- **Métodos clave**:
+- **Métodos**:
   - `iniciar()`: Hace visible la ventana principal.
   - `cargarDesdeArchivo()`: Abre un selector de archivo.
   - `configurarManual()`: Genera un tablero aleatorio.
   - `iniciarBucle()`: Ejecuta la simulación con `Timer`.
   - `avanzarUnaGeneracion()`: Avanza una generación manual.
-
 **Flujo**:
 ```
 1. Mostrar ventana Swing
@@ -238,12 +213,11 @@ El proyecto implementa una arquitectura limpia que separa la lógica del juego d
 **Validaciones**:
 - Verifica filas y columnas.
 - Completa líneas cortas con celdas muertas.
-- Lanza excepciones descriptivas.
+- Lanza excepciones en popups.
 
 ---
 
 ## Principios SOLID Aplicados
-
 ### 1. **Principio de Responsabilidad Única**
 Cada clase tiene una única responsabilidad bien definida:
 - `Tablero` → Gestión del tablero y evolución
@@ -252,21 +226,17 @@ Cada clase tiene una única responsabilidad bien definida:
 - `VistaJuego` → Presentación e interacción
 - `CargadorTablero` → Entrada/Salida
 
-
 ### 2. **Principio Abierto/Cerrado**
 El sistema es abierto para extensión pero cerrado para modificación:
 - Nuevos estados pueden crearse implementando la interfaz `Estado`
 - Sin cambiar código existente en `Tablero` o `Celda`, ni la lógica.
 - El cargadorTablero y la vista se actualizan para que el nuevo `Estado` pueda leerse su representación y ser visto por el usuario.
 
-
 ### 3. **Principio de Sustitución de Liskov**
 Todas las implementaciones de `Estado` son intercambiables:
 
-
 ### 4. **Principio de Segregación de Interfaces**
 La interfaz `Estado` define solo lo necesario:
-
 
 ### 5. **Principio de Inversión de Dependencias**
 - `Tablero` depende de la abstracción `Estado`, no de implementaciones
@@ -276,10 +246,8 @@ La interfaz `Estado` define solo lo necesario:
 ---
 
 ## Cómo Extender el Proyecto
-
 ### Agregar un Nuevo Estado
-
-Se quiere agregar un estado `EstadoRobot`:
+Se quiere agregar `EstadoRobot`:
 - Es considerado "vivo"
 - Se representa con `R`
 - Muere si tiene más de 4 vecinos vivos.
@@ -343,7 +311,6 @@ private Color colorPorEstado(char estado) {
             return Color(0, 0, 0);
     }
 }
-
 ```
 Modificar `VistaJuego.java` en el método `configurarManual()`:
 ```java
@@ -381,6 +348,7 @@ private void configurarManual() {
 - **State Pattern** (Patrón Estado): `Celda` y `Estado` para transicionar a la siguiente generación. 
 - **Template Method (Método Plantilla)**: Flujo de ejecución en `VistaJuego`.
 - **Abstract Factory Pattern (Fábrica Abstracta)**: Buso establecer familia de objetos relacionados. Creo `Estado` como abstract factory para describir la familia, y creo una implementación concreta para cada Estado, `EstadoVivo`, `EstadoMuerto`, `EstadoEnfermo`, ...
+- **Patrón Strategy**: En tirmpo de ejecución una familia de objetos es intercambiable. Ocurre con `Estado`.
 
 ---
 
