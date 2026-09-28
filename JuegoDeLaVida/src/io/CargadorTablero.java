@@ -37,7 +37,9 @@ public class CargadorTablero {
 	            if (!sc.hasNextLine()) break;
 	            String linea = sc.nextLine();
 	            for (int j = 0; j < columnas; j++) {
-	                char c = (j < linea.length()) ? linea.charAt(j) : '.';
+	                char c;
+					if (j < linea.length()) c=linea.charAt(j);
+					else c='.';
 	                Celda nc = new Celda(crearEstadoSegunCaracter(c));
 	                tablero.setCelda(i, j, nc);
 	            }

@@ -40,11 +40,11 @@ public class Tablero {
 	
 	/*FUNCIONAMINETO DEL JUEGO DE LA VIDA
 	 * 1. boolean avanzarGeneracion()
-	 * 		contar vecinos vivos --> int contarVecinosVivos()
-	 * 		chequear si hubieron cambios
-	 * 		devolver boolean para el Vista, para saber si continuar o no iterando las generaciones
+	 * 		+ contar vecinos vivos --> int contarVecinosVivos()
+	 * 		+ chequear si hubieron cambios
+	 * 		+ devolver boolean para el Vista, para saber si continuar o no iterando las generaciones
 	 * 2. int contarVecinosVivos()
-	 * 		chequearque se recorre el tablero --> isPosValida(fila, col)
+	 * 		+ chequearque se recorre el tablero --> isPosValida(fila, col)
 	 * 3. void mostrar()
 	*/
 	
@@ -58,7 +58,7 @@ public class Tablero {
 		}
 	}
 	
-	//Recorro matriz y cuentos vecinos vivos alrededor por celda
+	//Recorro matriz y cuentp vecinos vivos alrededor por celda
 	private int contarVecinosVivos(int fila, int col) {
 		int vivos=0;
 		//Recorro la matriz en 3x3 alrededor de la Celda

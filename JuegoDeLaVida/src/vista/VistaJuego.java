@@ -72,13 +72,13 @@ public class VistaJuego extends JFrame {
         JPanel panelConfiguracion = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 8));
         panelConfiguracion.setBorder(BorderFactory.createTitledBorder("Configuración"));
 
-        //Creo los Fields para los inputs
+        //Creo los Fields para los inputs con sus límites
         filasField = new JTextField(5);
         columnasField = new JTextField(5);
         generacionesField = new JTextField(5);
         delayField = new JTextField(5);
 
-        //Valores default de los Fields
+        //Valores default de los Fields (campos)
         filasField.setText("10");
         columnasField.setText("10");
         generacionesField.setText("0");
@@ -144,7 +144,7 @@ public class VistaJuego extends JFrame {
     private void cargarDesdeArchivo() {
         //Con JFileChooser puedo buscar y seleccionar un archivo
         JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de texto (*.txt)", "txt"));
+        chooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de texto (*.txt)", "txt"));//filtro el timpo de archivo
         chooser.setCurrentDirectory(new File("ejemplos"));//Carpeta por defecto
         int resultado = chooser.showOpenDialog(this);
 
@@ -165,7 +165,7 @@ public class VistaJuego extends JFrame {
     }
 
     private void configurarManual() {
-        //Escribir en los inputs las filas y columnas
+        //Escribir en los campos las filas y columnas
         try {
             int filas = Integer.parseInt(filasField.getText());
             int columnas = Integer.parseInt(columnasField.getText());
@@ -218,7 +218,7 @@ public class VistaJuego extends JFrame {
             maxGeneraciones = Integer.parseInt(generacionesField.getText());
             delayMs = Integer.parseInt(delayField.getText());
             if (delayMs < 0) {
-                throw new IllegalArgumentException("El delay no puede ser negativo.");
+                throw new IllegalArgumentException("El delay no puede ser negativo, ni 0.");
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Ingrese un valor numérico válido para generaciones y delay.", "Error", JOptionPane.ERROR_MESSAGE);
