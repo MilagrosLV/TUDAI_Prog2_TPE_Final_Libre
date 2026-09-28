@@ -11,6 +11,7 @@ Este proyecto se crea a partir de la consigna del TPE Libre - Juego de la vida (
 6. [Arquitectura y Diseño](#arquitectura-y-diseño)
 7. [Principios SOLID](#principios-solid-aplicados)
 8. [Cómo Extender el Proyecto](#cómo-extender-el-proyecto)
+9. [Notas Técnicas](#notas-técnicas)
 
 ---
 
@@ -345,12 +346,11 @@ private void configurarManual() {
 ---
 
 ## Notas Técnicas
-
 ### Patrones de Diseño Utilizados
-- **State Pattern** (Patrón Estado): `Celda` y `Estado` para transicionar a la siguiente generación. 
+- **State Pattern (Patrón Estado)**: `Celda` y `Estado` para transicionar a la siguiente generación. 
 - **Template Method (Método Plantilla)**: Flujo de ejecución en `VistaJuego`.
-- **Abstract Factory Pattern (Fábrica Abstracta)**: Buso establecer familia de objetos relacionados. Creo `Estado` como abstract factory para describir la familia, y creo una implementación concreta para cada Estado, `EstadoVivo`, `EstadoMuerto`, `EstadoEnfermo`, ...
-- **Patrón Strategy**: En tirmpo de ejecución una familia de objetos es intercambiable. Ocurre con `Estado`.
+- **Abstract Factory Pattern (Fábrica Abstracta)**: Busco establecer familia de objetos relacionados. Creo `Estado` como abstract factory para describir la familia, y creo una implementación concreta para cada Estado, `EstadoVivo`, `EstadoMuerto`, `EstadoEnfermo`, ...
+- **Patrón Strategy**: En tiempo de ejecución una familia de objetos es intercambiable. Ocurre con `Estado`.
 
 ---
 
