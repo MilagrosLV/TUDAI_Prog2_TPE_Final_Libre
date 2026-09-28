@@ -6,9 +6,11 @@ Este proyecto se crea a partir de la consigna del TPE Libre - Juego de la vida (
 1. [Estructura del Proyecto](#estructura-del-proyecto)
 2. [Compilación](#compilación)
 3. [Ejecución](#ejecución)
-4. [Arquitectura y Diseño](#arquitectura-y-diseño)
-5. [Principios SOLID](#principios-solid-aplicados)
-6. [Cómo Extender el Proyecto](#cómo-extender-el-proyecto)
+4. [Interfáz](#interfaz)
+5. [Formato de Archivo Tablero](#formato-de-archivo-tablero)
+6. [Arquitectura y Diseño](#arquitectura-y-diseño)
+7. [Principios SOLID](#principios-solid-aplicados)
+8. [Cómo Extender el Proyecto](#cómo-extender-el-proyecto)
 
 ---
 
@@ -60,7 +62,7 @@ java -cp bin juego.JuegoDeLaVida
 1. Abre el archivo `JuegoDeLaVida.java`
 2. Ejecuta el método `main()` (botón de play o tecla F5)
 
-### Interfaz
+## Interfaz
 Se usa una interfaz Swing. Los controles/botones disponibles son:
 - **Cargar desde archivo**: abre un `JFileChooser` para elegir un tablero desde `ejemplos/` o cualquier archivo `.txt`.
 - **Generar tablero aleatorio**: crea un tablero con tamaños definidos por los campos `Filas` y `Columnas`.
@@ -70,7 +72,7 @@ Se usa una interfaz Swing. Los controles/botones disponibles son:
     - **Pausar / Reanudar**: controla la ejecución automática. Cambia el nombre del botón, si se Pausa cambia a Reanudar y vice versa. 
     - **Siguiente**: avanza una única generación manualmente.
 
-### Formato de Archivo
+## Formato de Archivo Tablero
 El archivo debe tener el siguiente formato:
 - Debe ser de tipo .txt
 ```
