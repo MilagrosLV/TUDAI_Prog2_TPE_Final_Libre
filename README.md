@@ -96,7 +96,7 @@ Caracteres válidos:
 - `E` - celda enferma
 - `X` - celda latente
 
-- **Nota:** El programa es insensible a mayúsculas/minúsculas al leer archivos, y cualquier carácter no reconocido será tratado automáticamente como una celda muerta `.`. También, debe tomarse en cuenta que al crear un archivo, la pisición de dónde se declaran las filas y las columnas es absoluta (siempre el primer renglón, el primer caracter debe ser valido Integer y luego debe estar separado por un espacio y sew coloca el nro de columnas).
+- **Nota:** El programa es insensible a mayúsculas/minúsculas al leer archivos, y cualquier carácter no reconocido será tratado automáticamente como una celda muerta `.`. También, debe tomarse en cuenta que al crear un archivo, la posición de dónde se declaran las filas y las columnas es absoluta (siempre el primer renglón, el primer caracter debe ser valido Integer y luego debe estar separado por un espacio para el siguiente valor Integer, pues uso Scanner.hasNestInt()).
 
 ### Controles Durante la Simulación
 
