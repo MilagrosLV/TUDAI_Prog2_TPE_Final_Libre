@@ -56,8 +56,9 @@ javac -d bin src/modelo/*.java src/juego/*.java src/vista/*.java src/io/*.java
 
 ### Desde Línea de Comandos
 
+1. Una vez ya posicionado dentro de la carpeta JuegoDeLaVida
+
 ```bash
-cd JuegoDeLaVida
 java -cp bin juego.JuegoDeLaVida
 ```
 
@@ -95,7 +96,7 @@ Caracteres válidos:
 - `E` - celda enferma
 - `X` - celda latente
 
-- **Nota sobre el Formato**: El programa es insensible a mayúsculas/minúsculas al leer archivos, y cualquier carácter no reconocido será tratado automáticamente como una celda muerta `.`.
+- **Nota:** El programa es insensible a mayúsculas/minúsculas al leer archivos, y cualquier carácter no reconocido será tratado automáticamente como una celda muerta `.`. También, debe tomarse en cuenta que al crear un archivo, la pisición de dónde se declaran las filas y las columnas es absoluta (siempre el primer renglón, el primer caracter debe ser valido Integer y luego debe estar separado por un espacio y sew coloca el nro de columnas).
 
 ### Controles Durante la Simulación
 
