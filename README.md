@@ -75,7 +75,7 @@ Se usa una interfaz Swing. Los controles/botones disponibles son:
 - **Generar tablero aleatorio**: crea un tablero con tamaños definidos por los campos `Filas` y `Columnas`.
   - Para generar un archivo aleatorio, se debe tomar en cuenta los valores presentes en los campos Filas, Columnas, Generaciones y Delay(ms). Cada uno de estos campos vienen con valores de default. Si se presiona el botón Generar tablero aleatorio sin modificar niguno, entonces se generará un tablero de 10 filas x 10 columnas, donde cada celda puede tomar cualquiera de los valores habilitados con un 25% de probabilidad y correrá hasta que el tablero se estabilice sin importar cuantos ciclos generacionales deberá pasar (Generaciones dice 0, eso significa que no se ingresa cuantas generaciones se recorrerán), a una velocidad de 500 milisegundos.
 - Para responder a la consigna `4. Opcional (bonus): GUI usando Swing/JavaFX con visualización en tiempo real y controles (start/stop/step/speed).` (Iniciar/Pausar/Siguiente/Delay (ms){campo milisegundos})
-    - **Iniciar simulación**: arranca el bucle con `Timer` y el `Delay` configurado en milisegundos. Interpreto speed como la posibilidad de decidir la velocidad que toma cada ciclo generacional.
+    - **Iniciar**: arranca el bucle con `Timer` y el `Delay` configurado en milisegundos. Interpreto speed como la posibilidad de decidir la velocidad que toma cada ciclo generacional.
     - **Pausar / Reanudar**: controla la ejecución automática. Cambia el nombre del botón, si se Pausa cambia a Reanudar y vice versa. 
     - **Siguiente**: avanza una única generación manualmente.
 
